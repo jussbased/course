@@ -1,0 +1,43 @@
+<div class="container mr-ml-2">
+<%= form_with scope: :note, url: notes_path, local: true do |form| %>
+    
+
+    <% if @note.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@note.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @note.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :Title, class:"col"%><br>
+    <%= form.text_field :title, class:"form-control", id:"formGroupExampleInput" %>
+  </p>
+
+  <p>
+    <%= form.label :Specialization, class:"col" %><br>
+    <%= form.text_field :specialization, class:"form-control", id:"formGroupExampleInput"%>
+  </p>
+
+  <p>
+    <%= form.label :Text , class:"col" %><br>
+    <%= form.text_area :text, class:"form-control", id:"exampleFormControlTextarea1", rows:"3" %>
+  </p>
+
+    <p>
+    <%= form.label :Tags, class:"col" %><br>
+    <%= form.text_field :tags, class:"form-control", id:"formGroupExampleInput" %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+</div>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>     
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light row">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        
+        <%= link_to 'Главная', root_path, class:"btn btn-outline-dark" %>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Отображения
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Язык</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Режим</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Аккаунт
+        </a>
+        <% if current_user %>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to 'Моя страница', destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+          <div class="dropdown-divider"></div>
+          <%= link_to 'Выход', destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+        </div>
+        <% else %>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to 'Вход',  new_user_session_path, class:"dropdown-item" %>
+          <div class="dropdown-divider"></div>
+          <%= link_to 'Регистрация', new_user_registration_path, class:"dropdown-item" %>
+        <% end %>
+      </li>
+     </ul>
+     <% if current_user %>
+     <div class="navbar-nav mr-auto">
+      <%=link_to 'Добавить материал', new_note_path, class:"btn btn-primary"%>
+     </div>
+    <% end %>
+    <form class="form-inline mr-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Введите запрос" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск на сайте</button>
+    </form>
+  </div>
+</nav> 
+    <%= yield %>
+<p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  
+    
+  </body>
+</html>

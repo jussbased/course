@@ -1,0 +1,39 @@
+<p>
+  <strong>Title:</strong>
+  <%= @note.title %>
+</p>
+
+<p>
+  <strong>Specialization:</strong>
+  <%= @note.specialization %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @note.text %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @note.tags %>
+</p>
+
+<h2>Comments</h2>
+<% @note.comments.each do |comment| %>
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+<% end %>
+
+<h2>Add a comment:</h2>
+<%= form_with(model: [ @note, @note.comments.build ], local: true) do |form| %>
+
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
